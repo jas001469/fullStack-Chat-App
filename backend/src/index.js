@@ -5,11 +5,11 @@ import cors from "cors";
 
 import path from "path";
 
-import { connectDB } from "./src/lib/db.js";
+import { connectDB } from "./lib/db.js";
 
-import authRoutes from "./src/routes/authRoute.js";
-import messageRoutes from "./src/routes/messageRoute.js";
-import { app, server } from "./src/lib/socket.js";
+import authRoutes from "./routes/authRoute.js";
+import messageRoutes from "./routes/messageRoute.js";
+import { app, server } from "./lib/socket.js";
 
 dotenv.config();
 
@@ -37,8 +37,8 @@ app.use("/api/messages", messageRoutes);
 // }
 
 if(process.env.NODE_ENV==='production'){
-  app.use(express.static(path.join(__dirname,'../frontend/dist')))
-  app.get('*',(req,res)=>res.sendFile(__dirname,'../','frontend','dist','index.html'))
+  app.use(express.static(path.join(__dirname,'.../frontend/dist')))
+  app.get('*',(req,res)=>res.sendFile(__dirname,'.../','frontend','dist','index.html'))
 }else{
   app.get('/', (req, res) => {
     res.send({ message: 'Welcome to Chat App' })
